@@ -3,11 +3,12 @@ import React from "react";
 function Header() {
   return (
     <div
-      className="h-[34vw] my-[30px] mx-[auto] bg-no-repeat bg-contain relative rounded-3xl"
-      style={{ backgroundImage: "url(/header_img2.jpg)" }}
+      className="h-[34vw] my-[30px] mx-[auto] bg-no-repeat bg-cover relative rounded-xl"
+      style={{ backgroundImage: "url(/img_header.png)" }}
+      // style={{ backgroundImage: "url(/IndianFood_Main2.jpg)" }}
     >
       <div className="absolute flex flex-col items-start gap-[1.5vw] max-w-[55%] bottom-[10%] left-[3vw] animate-fade-in-scale duration-1000">
-        <h2 className="text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[Outfit]">
+        <h2 className="text-white  text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[Outfit]">
           Order your favourite food here
         </h2>
         <p className="text-white text-[1vw] font-[Outfit]">
