@@ -1,8 +1,15 @@
 import React from "react";
 import { menu_list } from "../../assets/assets";
 import "./ExploreMenu.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory } from "../../slices/foodSlice";
 
-function ExploreMenu({ category, setCategory }) {
+function ExploreMenu() {
+  const foodCategory = useSelector((state) => state.food.category);
+  const dispatch = useDispatch();
+  function putCategory(cat) {
+    dispatch(setCategory(cat));
+  }
   return (
     <div className="flex flex-col gap-[20px]">
       <h1 className="text-4xl font-medium text-[#262626]">Explore our menu</h1>
@@ -16,8 +23,8 @@ function ExploreMenu({ category, setCategory }) {
           return (
             <div
               onClick={() =>
-                setCategory((prev) =>
-                  prev === item.menu_name ? "All" : item.menu_name
+                putCategory(
+                  foodCategory === item.menu_name ? "All" : item.menu_name
                 )
               }
               key={index}
@@ -25,7 +32,7 @@ function ExploreMenu({ category, setCategory }) {
               <img
                 src={item.menu_image}
                 className={`w-[7.5vw] min-w-[80px] cursor-pointer rounded-[50%] transition-[0.2s] ${
-                  category === item.menu_name ? "activeMenu" : ""
+                  foodCategory === item.menu_name ? "activeMenu" : ""
                 }`}
                 alt=""
               />
