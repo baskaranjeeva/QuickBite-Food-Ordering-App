@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, getTotalCartAmount } from "../../slices/foodSlice";
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 function Cart() {
   const { cartItems, food_list, total } = useSelector((state) => state.food);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   function removeItem(id) {
     dispatch(removeFromCart(id));
   }
@@ -69,15 +70,18 @@ function Cart() {
             <hr className="my-[10px]" />
             <div className="flex justify-between text-[#555]">
               <p>Delivery Fee</p>
-              <p>${2}</p>
+              <p>${total === 0 ? 0 : 2}</p>
             </div>
             <hr className="my-[10px]" />
             <div className="flex justify-between text-[#555]">
               <b>Total</b>
-              <b>${total + 2}</b>
+              <b>${total === 0 ? 0 : total + 2}</b>
             </div>
           </div>
-          <button className="border-none text-white bg-[tomato] w-[max(15vw,300px)] py-[8px] mt-2 rounded-[4px] cursor-pointer">
+          <button
+            onClick={() => navigate("/order")}
+            className="border-none text-white bg-[tomato] w-[max(15vw,300px)] py-[8px] mt-2 rounded-[4px] cursor-pointer"
+          >
             PROCEED TO CHECKOUT
           </button>
         </div>
