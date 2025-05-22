@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setShowLogin } from "../slices/foodSlice";
 function Navbar() {
   const [menu, setMenu] = useState("home");
+  const [dotVal, setDotVal] = useState("");
+  const { total } = useSelector((state) => state.food);
 
   const dispatch = useDispatch();
   function displayLogin(disp) {
@@ -14,11 +16,20 @@ function Navbar() {
   const currentMenu = (name) => {
     return name === menu ? "active" : "";
   };
+  useEffect(() => {
+    if (total === 0) {
+      setDotVal("");
+    } else {
+      setDotVal("dot");
+    }
+  }, [total]);
   return (
     <div>
       <div className="flex justify-between items-center mt-10">
         <div>
-          <img src={assets.logo} className="w-40" alt="" />
+          <Link to="/">
+            <img src={assets.logo} className="w-40" alt="" />
+          </Link>
         </div>
         <div>
           <ul className="flex gap-10 text-[#49557e] text-lg cursor-pointer sm:gap-6 sm:text-md md:gap-4 md:text-sm lg:gap-8 lg:text-base">
@@ -55,8 +66,10 @@ function Navbar() {
         <div className="flex gap-10 items-center">
           <img src={assets.search_icon} alt="" />
           <div className="navbar-basket-icon">
-            <img src={assets.basket_icon} alt="" />
-            <div className="dot"></div>
+            <Link to="/cart">
+              <img src={assets.basket_icon} alt="" />
+            </Link>
+            <div className={dotVal}></div>
           </div>
           <button
             onClick={() => displayLogin(true)}

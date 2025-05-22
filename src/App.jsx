@@ -12,7 +12,7 @@ import LoginPopup from "./components/LoginPopup";
 import { useSelector } from "react-redux";
 function App() {
   const { showLogin } = useSelector((state) => state.food);
-  console.log("In App: ", showLogin);
+  // console.log("In App: ", showLogin);
   return (
     <>
       {showLogin ? <LoginPopup /> : <></>}

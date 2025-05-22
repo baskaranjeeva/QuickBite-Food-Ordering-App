@@ -5,6 +5,7 @@ const initialState = {
   cartItems: {},
   category: "All",
   showLogin: false,
+  total: 0,
 };
 
 export const foodSlice = createSlice({
@@ -30,12 +31,12 @@ export const foodSlice = createSlice({
     getTotalCartAmount: (state) => {
       let totalAmount = 0;
       for (const item in state.cartItems) {
-        const itemInfo = food_list.find((p) => p._id === item);
-        if (itemInfo) {
+        if (state.cartItems[item] > 0) {
+          const itemInfo = food_list.find((product) => product._id === item);
           totalAmount += itemInfo.price * state.cartItems[item];
         }
       }
-      return totalAmount;
+      state.total = totalAmount;
     },
     setCategory: (state, action) => {
       let cat = action.payload;

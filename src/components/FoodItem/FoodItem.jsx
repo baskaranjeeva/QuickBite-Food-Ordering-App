@@ -16,9 +16,11 @@ function FoodItem({ item }) {
   // console.log(item._id);
   function addItem(id) {
     dispatch(addToCart(id));
+    dispatch(getTotalCartAmount());
   }
   const removeItem = (id) => {
     dispatch(removeFromCart(id));
+    dispatch(getTotalCartAmount());
   };
 
   return (
