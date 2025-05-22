@@ -4,6 +4,7 @@ const initialState = {
   food_list,
   cartItems: {},
   category: "All",
+  showLogin: false,
 };
 
 export const foodSlice = createSlice({
@@ -40,8 +41,17 @@ export const foodSlice = createSlice({
       let cat = action.payload;
       state.category = cat;
     },
+    setShowLogin: (state, action) => {
+      let status = action.payload;
+      state.showLogin = status;
+    },
   },
 });
-export const { addToCart, removeFromCart, getTotalCartAmount, setCategory } =
-  foodSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  getTotalCartAmount,
+  setCategory,
+  setShowLogin,
+} = foodSlice.actions;
 export default foodSlice.reducer;

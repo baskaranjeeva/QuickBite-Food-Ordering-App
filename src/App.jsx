@@ -8,9 +8,14 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
+import LoginPopup from "./components/LoginPopup";
+import { useSelector } from "react-redux";
 function App() {
+  const { showLogin } = useSelector((state) => state.food);
+  console.log("In App: ", showLogin);
   return (
     <>
+      {showLogin ? <LoginPopup /> : <></>}
       <div className="w-[80%] m-auto">
         <Navbar />
         <Routes>

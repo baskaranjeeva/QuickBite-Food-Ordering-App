@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setShowLogin } from "../slices/foodSlice";
 function Navbar() {
   const [menu, setMenu] = useState("home");
+
+  const dispatch = useDispatch();
+  function displayLogin(disp) {
+    dispatch(setShowLogin(disp));
+  }
   const currentMenu = (name) => {
     return name === menu ? "active" : "";
   };
@@ -14,25 +21,35 @@ function Navbar() {
           <img src={assets.logo} className="w-40" alt="" />
         </div>
         <div>
-          <ul className="flex gap-10 text-[#49557e] text-lg cursor-pointer">
-            <li className={currentMenu("home")} onClick={() => setMenu("home")}>
+          <ul className="flex gap-10 text-[#49557e] text-lg cursor-pointer sm:gap-6 sm:text-md md:gap-4 md:text-sm lg:gap-8 lg:text-base">
+            <Link
+              to="/"
+              className={currentMenu("home")}
+              onClick={() => setMenu("home")}
+            >
               home
-            </li>
-            <li className={currentMenu("menu")} onClick={() => setMenu("menu")}>
+            </Link>
+            <a
+              href="#explore-menu"
+              className={currentMenu("menu")}
+              onClick={() => setMenu("menu")}
+            >
               menu
-            </li>
-            <li
+            </a>
+            <a
+              href="#app-download"
               className={currentMenu("mobile-app")}
               onClick={() => setMenu("mobile-app")}
             >
               mobile-app
-            </li>
-            <li
+            </a>
+            <a
+              href="#footer"
               className={currentMenu("contact us")}
               onClick={() => setMenu("contact us")}
             >
               contact us
-            </li>
+            </a>
           </ul>
         </div>
         <div className="flex gap-10 items-center">
@@ -41,7 +58,18 @@ function Navbar() {
             <img src={assets.basket_icon} alt="" />
             <div className="dot"></div>
           </div>
-          <button className="bg-transparent hover:bg-[#fff4f2]  text-xl text-[#49557e] rounded-4xl border border-red-500 px-8 py-1  transition duration-300 cursor-pointer">
+          <button
+            onClick={() => displayLogin(true)}
+            className="bg-transparent hover:bg-[#fff4f2] 
+  text-xl sm:text-lg md:text-base 
+  text-[#49557e] 
+  rounded-4xl sm:rounded-2xl md:rounded-lg 
+  border border-red-500 
+  px-8 sm:px-6 md:px-4 
+  py-1 sm:py-2 md:py-1 
+  transition duration-300 
+  cursor-pointer"
+          >
             sign in
           </button>
         </div>

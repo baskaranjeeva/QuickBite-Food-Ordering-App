@@ -4,8 +4,11 @@ import { assets } from "../assets/assets";
 function AppDownload() {
   return (
     <>
-      <div className="m-auto mt-[100px] text-4xl text-[max(3vw_20px)] text-center font-bold">
-        <p>
+      <div
+        className="m-auto mt-[100px] text-4xl text-[max(3vw_20px)] text-center font-bold"
+        id="app-download"
+      >
+        <p className="text-4xl">
           For Better Experience Download <br />
           Quickbite App
         </p>

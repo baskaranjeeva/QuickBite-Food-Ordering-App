@@ -1,8 +1,12 @@
 import React from "react";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <div className="text-[#d9d9d9] bg-[#323232] flex flex-col items-center mt-5 gap-[20px] py-[20px] px-[8vw] pt-[80px]">
+    <div
+      className="text-[#d9d9d9] bg-[#323232] flex flex-col items-center mt-5 gap-[20px] py-[20px] px-[8vw] pt-[80px]"
+      id="footer"
+    >
       <div className="w-full grid grid-cols-[2fr_1fr_1fr] gap-[80px]">
         <div className="flex flex-col items-start gap-[20px] list-none mb-1">
           <img src={assets.logo} alt="" />
@@ -21,10 +25,18 @@ function Footer() {
         <div className="flex flex-col items-start gap-[20px] list-none mb-1 text-white">
           <h2 className="text-xl font-semibold">COMPANY</h2>
           <ul>
-            <li className="cursor-pointer">Home</li>
-            <li className="cursor-pointer">About us</li>
-            <li className="cursor-pointer">Delivery</li>
-            <li className="cursor-pointer">Privacy policy</li>
+            <Link to="" className="cursor-pointer">
+              Home
+            </Link>
+            <a href="#explore-menu" className="cursor-pointer">
+              About us
+            </a>
+            <a href="" className="cursor-pointer">
+              Delivery
+            </a>
+            <a href="" className="cursor-pointer">
+              Privacy policy
+            </a>
           </ul>
         </div>
         <div className="flex flex-col items-start gap-[20px] list-none mb-1 text-white">
